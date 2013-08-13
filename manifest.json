@@ -34,11 +34,19 @@
         "mark_as_read.js"
       ],
       "css": [ "hn_theme.css" ],
-      "run_at": "document_start"
+      "run_at": "document_start",
+      "all_frames": true
     }
   ],
 
-  "web_accessible_resources": ["defaults.json", "gear.svg", "arrow-up.svg", "arrow-down.svg"],
+  "web_accessible_resources": [
+    "arrow-down.svg",
+    "arrow-up.svg",
+    "defaults.json",
+    "gear.svg",
+    "permissions.html",
+    "permissions.js"
+  ],
 
   "icons": {
     "16": "icon16.png",

@@ -106,6 +106,9 @@ Settings.prototype.buildMenu = function (added, requirements, permissions) {
       items.inner.appendChild(block);
     });
 
+    // Add the permissions script to the page
+    self.setupPermissions(items.inner);
+
     // Apply permissions
     self.applyPermissions(permissions, map);
 
@@ -261,19 +264,23 @@ Settings.prototype.createSettingsBlock = function (key, status, flash) {
   return block;
 };
 
+Settings.prototype.setupPermissions = function (container) {
+  var iframe = _.createElement("iframe", {
+    attributes: {
+      id: 'iframe-permissions',
+      src: chrome.extension.getURL('permissions.html')
+    }
+  });
+  container.appendChild(iframe);
+};
+
 Settings.prototype.applyPermissions = function (permissions, map) {
   Object.keys(permissions).forEach(function (key) {
     if (map[key]) {
       var checkbox = map[key].getElementsByTagName("input")[0];
       checkbox.addEventListener("change", function (e) {
         if (this.checked) {
-          chrome.permissions.request(permissions[key], function(granted) {
-            if (granted) {
-              // Permission has been granted
-            } else {
-              // Not granted
-            }
-          });
+          // undefined
         }
       });
     }
